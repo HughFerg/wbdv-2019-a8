@@ -16,6 +16,12 @@ module.exports = function (app) {
 	function findAllStudents(req, res) {
 		res.json(universityDao.findAllStudents());
 	}
+	function findAllAnswers(req, res) {
+		res.json(universityDao.findAllAnswers());
+	}
+	function findAnswerById(req, res) {
+		res.json(universityDao.findAnswerById(req.params['aid']))
+	}
 	function findStudentById(req, res) {
 		res.json(universityDao.findStudentById(req.params['sid']))
 	}
@@ -34,6 +40,18 @@ module.exports = function (app) {
 	function studentAnswerQuestion(req, res) {
 		res.json(universityDao.answerQuestion(req.params['sid'], req.params['qid'], req.body))
 	}
+	function findAllAnswersByQuestion(req, res) {
+		res.json(universityDao.findAnswersByQuestion(req.qid))
+	}
+	function findAllAnswersByStudent(req, res) {
+		res.json(universityDao.findAnswersByStudent(req.sid))
+	}
+	function findAllAnswersByStudentForQuestion(req, res) {
+		res.json(universityDao.findAllAnswersByStudentForQuestion(req.sid, req.qid))
+	}
+	function createAnswer(req, res) {
+		res.json(universityDao.createAnswer(req.body))
+	}
 	
 	app.post("/api/student", createStudent);
 	app.get("/api/student", findAllStudents);
@@ -46,6 +64,7 @@ module.exports = function (app) {
 	app.put("/api/question/:sid", updateQuestion);
 	app.post("/api/student/:sid/question/:qid/answer", studentAnswerQuestion);
 	app.get("/api/answer", findAllAnswers);
+	app.post("/api/answer", createAnswer);
 	app.get("/api/answer/:aid", findAnswerById);
 	app.get("/api/question/:qid/answer", findAllAnswersByQuestion);
 	app.get("/api/student/:sid/answer", findAllAnswersByStudent);

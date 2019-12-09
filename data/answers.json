@@ -1,11 +1,5 @@
 [
 	{
-		"_id": "123",
-		"student": "123",
-		"question": "321",
-		"trueFalseAnswer": true
-	},
-	{
 		"_id": "234",
 		"student": "123",
 		"question": "432",

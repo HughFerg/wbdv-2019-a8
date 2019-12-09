@@ -1,4 +1,4 @@
-var studentDao = require('..//daos/student.dao.server.js');
+var studentDao = require('../daos/university.dao.server.js');
 
 module.exports = function (app) {
 

@@ -3,54 +3,84 @@ var questions = require('../data/questions.json');
 var answers = require('../data/answers.json');
 var studentModel = require('../models/student.model.server');
 
-export function createStudent(student) {
+module.exports = {
+	createStudent,
+	createQuestion,
+	createAnswer,
+	answerQuestion,
+	updateStudent,
+	updateQuestion,
+	deleteQuestion,
+	deleteStudent,
+	findStudentByUsername,
+	findAllStudents,
+	findStudentById,
+	findAllQuestions,
+	findQuestionById,
+	findAllAnswers,
+	findAnswerById,
+	findAnswersByStudent,
+	findAnswersByQuestion,
+	findAllAnswersByStudentForQuestion
+}
+
+function createStudent(student) {
 	students.push(student);
 	return students;
 }
-export function createQuestion(question) {
+function createQuestion(question) {
 	questions.push(question);
 	return questions;
 }
-export function answerQuestion(studentId, questionId, answer) {
-	// TODO
+function createAnswer(answer) {
+	answers.push(answer);
+	return answers;
 }
-export function updateStudent(student) {
+function answerQuestion(studentId, questionId, answer) {
+	answer = { ...answer, student: studentId, question: questionId };
+	answers.push(answer);
+	return answers;
+}
+function updateStudent(student) {
 	// NOT REQUIRED
 }
-export function updateQuestion(question) {
+function updateQuestion(question) {
 	// NOT REQUIRED
 }
-export function deleteQuestion(qid) {
+function deleteQuestion(qid) {
 	// NOT REQUIRED
 }
-export function deleteStudent(sid) {
+function deleteStudent(sid) {
 	// NOT REQUIRED
 }
-export function findStudentByUsername(username) {
+function findAllAnswersByStudentForQuestion(sid, qid) {
+	// NOT REQUIRED
+}
+function findStudentByUsername(username) {
 	// return studentModel.find({username: username})
 	return studentModel.findOne({ username: username })
 }
-export function findAllStudents() {
+function findAllStudents() {
 	return students;
 }
-export function findStudentById(sid) {
+function findStudentById(sid) {
 	return students.find(student => student._id == sid)
 }
-export function findAllQuestions() {
+function findAllQuestions() {
 	return questions;
 }
-export function findQuestionById(qid) {
+function findQuestionById(qid) {
 	return questions.find(question => question._id == qid)
 }
-export function findAllAnswers() {
+function findAllAnswers() {
 	return answers;
 }
-export function findAnswerById(aid) {
+function findAnswerById(aid) {
 	return answers.find(a => a._id == aid)
 }
-export function findAnswersByStudent(sid) {
-	// TODO
+function findAnswersByStudent(sid) {
+	return answers.findAll(a => a.student == sid);
 }
-export function findAnswersByQuestion(qid) {
-	// TODO
+function findAnswersByQuestion(qid) {
+	return answers.findAll(a => a.question == qid);
 }
